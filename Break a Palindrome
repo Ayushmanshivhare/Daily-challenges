@@ -1,0 +1,34 @@
+class Solution {
+public:
+    bool isPalindrome(string s){
+        int n = s.size();
+        int i=0,j=n-1;
+        while(i<=j){
+            if(s[i]==s[j]){
+                i++;
+                j--;
+               }
+            else return true;
+        }
+        return false;
+    }
+    
+    string breakPalindrome(string pali) {
+        int m = pali.size();
+        for(int i=0;i<m;i++) {
+           if(pali[i]!='a'){
+              string str = pali;
+                str[i]= 'a';
+       if(isPalindrome(str)==true) return str;
+                 }
+        }
+        
+        for(int j=m-1;j>=0;j--){
+            char y = pali[j];
+           string x = pali;
+            x[j] = y+1;
+          if(isPalindrome(x)==true) return x;
+           }
+        return {};
+    }
+};
