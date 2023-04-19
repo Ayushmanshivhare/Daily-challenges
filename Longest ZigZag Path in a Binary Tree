@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int maxi = -1;
+    void helper(TreeNode* node, int h, bool isRight) {
+        if (node == nullptr)
+            return;
+        maxi = max(maxi, h);
+        if (isRight) {
+            helper(node->left, h + 1, false);
+            helper(node->right, 1, true);
+        } else {
+            helper(node->right, h + 1, true);
+            helper(node->left, 1, false);
+        }
+    }
+    int longestZigZag(TreeNode* node) {
+        if (node == nullptr)
+            return -1;
+        maxi = 0;
+        helper(node->left, 1, false);
+        helper(node->right, 1, true);
+        return maxi;
+    }
+};
